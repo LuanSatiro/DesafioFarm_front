@@ -1,0 +1,10 @@
+<h4 routerLink="farm">Cadastrar</h4>
+
+<div class="mt-5" *ngFor="let farm of allFarm;let i = index; let last = last;" > 
+  <div class=""> 
+
+    <a class="" style="margin-top: 5px;" routerLink="farm/details/{{farm.id}}">{{farm?.name}}</a>
+
+  </div>
+
+</div>

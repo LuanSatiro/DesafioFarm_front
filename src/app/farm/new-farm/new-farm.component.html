@@ -1,0 +1,42 @@
+<div class="text-center" >
+  <p class="text-start" (click)="idFarmEdit? goToDashboard() : goToFarm()">Voltar</p>
+  <h2 class="text-start">
+    
+    {{actualFarm? "Editar fazenda" : "Nova fazenda" }}
+
+  </h2>
+  <form [formGroup]="form">
+    <div class="input-group input-group-sm mb-3 mt-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Nome</span>
+      <input  [class.has-error]="nameFarm.invalid && nameFarm.touched"
+      [class.has-success]="nameFarm.valid && nameFarm.touched" type='text' class="form-control" aria-describedby="inputGroup-sizing-sm" placeholder='nome para fazenda' [formControl]="nameFarm"/>
+      <small class="text-start col-12" *ngIf="nameFarm.invalid && nameFarm.touched" style="color: red;">*Obrigatório</small>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+      <span class="input-group-text" id="inputGroup-sizing-sm">Area</span>
+      <input [class.has-error]="area.invalid && area.touched"
+      [class.has-success]="area.valid && area.touched" type='number' class="form-control" aria-describedby="inputGroup-sizing-sm" placeholder='valor para a area' [formControl]="area"/>
+      <small class="text-start col-12" *ngIf="area.invalid && area.touched" style="color: red;">*Obrigatório</small>
+    </div>
+    
+    <button type="button" class="btn btn-primary btn-sm col-12 mt-3 mb-3" (click)="draw('Circle')" style="cursor: pointer;">Geometria</button>
+    
+    <b class="" >Centroide</b>
+    <ng-container formArrayName="centroid">
+      <div [class.mb-3]="!last" [formGroupName]="i" *ngFor="let control of centroid.controls;let i = index; let last = last;">
+        <div class="row mt-3">
+          <div class="form-group col" >
+            <label>longitude</label>
+            <input type='number'  class="form-control" placeholder='insira valor' formControlName="longitude"/>
+          </div>
+          <div class="form-group col" >
+            <label>latitude</label>
+            <input type='number' class="form-control" placeholder='insira valor' formControlName="latitude"/>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <button [disabled]="nameFarm.invalid || area.invalid" type="button" class="btn btn-secondary mt-3" (click)="saveFarm()">salvar</button>
+  </form>
+  
+</div>

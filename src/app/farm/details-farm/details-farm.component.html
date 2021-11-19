@@ -1,0 +1,36 @@
+<div>
+  <div class="row">
+    <p class="col" routerLink="">Voltar</p>
+    <div class="btn-group col justify-content-end" role="group" >
+      <div class="">
+        <button class="btn btn-default border btn-sm" style="margin-right: 5px;" routerLink="../../../farm/editFarm/{{actualFarm?.id}}">
+          edit
+        </button>
+      </div>
+      <div class="">
+        <button class="btn btn-default border btn-sm text-start" routerLink="" (click)="removeFarm(actualFarm?.id)">
+          del
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h3>
+  Detalhes
+
+</h3>
+
+
+<div class="">
+  <p>Id do dono: {{actualFarm?.owner_id}}</p>
+  <p>Nome fazenda: {{actualFarm?.name}}</p>
+  <p>Área: {{actualFarm?.area}}</p>
+  <div class="border-top border-2 mt-2">
+    <b class="mt-2">Centroide</b>
+    <div *ngFor="let farm of actualFarm?.centroid;let i = index; let last = last;" >
+      <p>latitude: {{farm?.latitude || 'Sem registros'}}</p>
+      <p>longitude: {{farm?.longitude || 'Sem registros'}}</p>
+    </div>
+  </div>
+</div>
